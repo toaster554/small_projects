@@ -10,6 +10,7 @@ parser = argparse.ArgumentParser()
 parser.add_argument('--path', default = 'user_to_id.pkl')
 parser.add_argument('--user_type')
 parser.add_argument('--user_name')
+parser.add_argument('--threshold', default = 99)
 parser.add_argument('--bucket')
 parser.add_argument('--collection')
 
@@ -126,6 +127,7 @@ def main():
     path = args.path
     user_type = args.user_type
     user_name = args.user_name
+    threshold = int(args.threshold)
     collection = args.collection
     bucket = args.bucket
     # load user_to_id
@@ -150,7 +152,7 @@ def main():
         user_to_id[user_name] = face_id
 
     elif user_type == 'existing':
-        face_id, similarity = face_lookup('temp.jpg', collection)
+        face_id, similarity = face_lookup('temp.jpg', collection, threshold)
 
         if similarity < 95 or face_id != user_to_id[user_name]:
             print('User\'s face does not match what is on database')

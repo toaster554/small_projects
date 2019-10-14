@@ -56,7 +56,7 @@ def main():
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "service.json"
 
     # length of recording in seconds
-    duration = args.duration
+    duration = int(args.duration)
     
     # Instantiates a client
     client = speech.SpeechClient()
