@@ -14,6 +14,7 @@ import argparse
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--duration', default = 5)
+parser.add_argument('--stop_word', default = 'done')
 
 args = parser.parse_args()
 
@@ -57,15 +58,16 @@ def main():
 
     # length of recording in seconds
     duration = int(args.duration)
+    stop_word = (args.stop_word).lower()
     
     # Instantiates a client
     client = speech.SpeechClient()
     
-    print('Say "done" to exit')
+    print(f'Say "{stop_word}" to exit')
 
     text = get_speech(client. duration)
 
-    while text != 'done':
+    while text != stop_word:
         text = get_speech(client)
 
 if __name__ == "__main__":
